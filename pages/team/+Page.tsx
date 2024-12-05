@@ -30,14 +30,7 @@ export default function Page() {
         
         pokemons.forEach(async (pokemon) => {
             if(pokemon.name === selectedPokemon)
-            {
-                const response = await fetch(`https://pokedex.coda.memento-dev.fr/pokemon/${pokemon.slug}`, {
-                    headers: {Authorization: `Bearer ${import.meta.env.API_KEY}`}
-                });
-                const pokemonObject = (await response.json()).current;
-
-                setTeam([...team, pokemonObject]);
-            }
+                setTeam([...team, pokemon]);
         });
     }
     
