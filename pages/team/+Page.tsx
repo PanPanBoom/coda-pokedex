@@ -87,29 +87,6 @@ export default function Page() {
             }
         })
 
-        // let typesOrderedByCount = [];
-        // let currentMax = Math.max(...Object.values(typesCounter));
-        // let currentMaxTypes = [];
-        // const typesCounterLength = Object.keys(typesCounter).length;
-        // while(types.length < typesCounterLength)
-        // {
-        //     const max = Math.max(...Object.values(typesCounter));
-        //     if(currentMax === max)
-        //     {
-        //         const keyMax = Object.keys(typesCounter).find(key => typesCounter[key] === max);
-        //         currentMaxTypes.push(keyMax);
-        //         typesCounter = Object.fromEntries(
-        //             Object.entries(typesCounter).filter(([key]) => key !== keyMax)
-        //         );
-        //     }
-
-        //     else
-        //     {
-        //         typesOrderedByCount.push(currentMaxTypes);
-        //         currentMaxTypes.
-        //     }
-        // }
-
         setTeamTypes(types);
     }
 
