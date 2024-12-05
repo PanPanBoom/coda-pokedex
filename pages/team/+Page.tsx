@@ -1,11 +1,18 @@
 import { useData } from "vike-react/useData";
 import type { Data } from "./+data";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 export default function Page() {
     const [team, setTeam] = useState([]);
     const pokemons = useData<Data>();
     const [selectedPokemon, setSelectedPokemon] = useState(pokemons[0].name);
+    const [teamStats, setTeamStats] = useState([]);
+    const [teamTypes, setTeamTypes] = useState([]);
+
+    useEffect(() => {
+        averageStats();
+        orderedTeamTypes();
+    }, [team]);
 
     const handleClick = () => {
         if(team.length === 6)
@@ -44,10 +51,10 @@ export default function Page() {
         });
     
         stats = stats.map(stat => { return {"name": stat.name, "base_stat": Math.round(stat.base_stat / team.length)}});
-        return stats
+        setTeamStats(stats);
     }
 
-    const teamTypes= () => {
+    const orderedTeamTypes= () => {
         let typesCounter = {};
         team.forEach(pokemon => {
             pokemon.types.forEach(type => {
@@ -58,22 +65,53 @@ export default function Page() {
             });
         });
 
-        let types = [];
-        const typesCounterLength = Object.keys(typesCounter).length;
-        while(types.length < typesCounterLength)
-        {
-            const max = Math.max(...Object.values(typesCounter));
-            const keyMax = Object.keys(typesCounter).find(key => typesCounter[key] === max);
-            types.push(keyMax);
-            typesCounter = Object.fromEntries(
-                Object.entries(typesCounter).filter(([key]) => key !== keyMax)
-            );
-        }
+        let typesCounterList = [];
+        Object.keys(typesCounter).forEach(name => {typesCounterList.push({"name": name, "count": typesCounter[name]})});
+        console.log(typesCounterList);
 
-        return types;
+        const types = typesCounterList.sort((a, b) => {
+            if(a.count < b.count)
+                return 1
+            else if(a.count > b.count)
+                return -1;
+            else
+            {
+                for(let i = 0; i < a.name.length; i++)
+                {
+                    if(a.name[i] < b.name[i])
+                        return -1;
+
+                    else if(a.name[i] > b.name[i])
+                        return 1;
+                }
+            }
+        })
+
+        // let typesOrderedByCount = [];
+        // let currentMax = Math.max(...Object.values(typesCounter));
+        // let currentMaxTypes = [];
+        // const typesCounterLength = Object.keys(typesCounter).length;
+        // while(types.length < typesCounterLength)
+        // {
+        //     const max = Math.max(...Object.values(typesCounter));
+        //     if(currentMax === max)
+        //     {
+        //         const keyMax = Object.keys(typesCounter).find(key => typesCounter[key] === max);
+        //         currentMaxTypes.push(keyMax);
+        //         typesCounter = Object.fromEntries(
+        //             Object.entries(typesCounter).filter(([key]) => key !== keyMax)
+        //         );
+        //     }
+
+        //     else
+        //     {
+        //         typesOrderedByCount.push(currentMaxTypes);
+        //         currentMaxTypes.
+        //     }
+        // }
+
+        setTeamTypes(types);
     }
-
-    console.log(teamTypes());
 
     return (
         <main>
@@ -87,9 +125,9 @@ export default function Page() {
             </ul>
             <h2>Informations d'équipes</h2>
             <ul>
-                {averageStats().map((stat, index) => <li key={index}>{stat.name}: {stat.base_stat}</li>)}
+                {teamStats.map((stat, index) => <li key={index}>{stat.name}: {stat.base_stat}</li>)}
             </ul>
-            <p>Types: {teamTypes().map((type, index) => type + (index + 1 === teamTypes().length ? "" : ", "))}</p>
+            <p>Types: {teamTypes.map((type, index) => `${type.name} (${type.count})${index + 1 === teamTypes.length ? "" : ", "}`)}</p>
         </main>
     )
 }
