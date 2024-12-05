@@ -24,6 +24,8 @@ export default function Page() {
   const filterPokemons = async (name: String, typeParam: String) => {
     let listPokemons = [];
     listPokemons = (name <= input ? pokemons : pokemonsDisplayed).filter(pokemon => pokemon.name.toLowerCase().includes(name.toLowerCase()));
+
+    console.log(listPokemons);
     
     
     if(typeParam.length < 1)
@@ -32,20 +34,9 @@ export default function Page() {
       return;
     }
 
-    console.log("test");
-
-    let listPokemonsObjects = await Promise.all(listPokemons.map(async (pokemon) => {
-      const response = await fetch(`https://pokedex.coda.memento-dev.fr/pokemon/${pokemon.slug}`, {
-        headers: {Authorization: `Bearer ${import.meta.env.API_KEY}`}
-      });
-      const json = await response.json();
-
-      return json.current;
-    }));
-
-    listPokemons = listPokemons.filter((pokemon, index) => {
+    listPokemons = listPokemons.filter(pokemon => {
       let typeInData = false;
-      listPokemonsObjects[index].types.forEach(type => {
+      pokemon.types.forEach(type => {
         if(type.name === typeParam)
           typeInData = true;
       })
