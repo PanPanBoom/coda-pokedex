@@ -20,14 +20,42 @@ export default function Page() {
 
         if(alreadyInTeam)
             return;
-
-        pokemons.forEach(pokemon => {
+        
+        pokemons.forEach(async (pokemon) => {
             if(pokemon.name === selectedPokemon)
-                setTeam([...team, pokemon]);
+            {
+                const response = await fetch(`https://pokedex.coda.memento-dev.fr/pokemon/${pokemon.slug}`, {
+                    headers: {Authorization: `Bearer ${import.meta.env.API_KEY}`}
+                });
+                const pokemonObject = (await response.json()).current;
+
+                setTeam([...team, pokemonObject]);
+            }
         });
     }
+    
+    const averageStats = () => {
+        let stats = [];
+        team.forEach((pokemon, index) => {
+            if(index === 0)
+                pokemon.stats.forEach(stat => stats.push({"name": stat.name, "base_stat": stat.base_stat}));
+            else
+                pokemon.stats.forEach((stat, indexStat) => stats[indexStat].base_stat += stat.base_stat);
+        });
+    
+        stats = stats.map(stat => { return {"name": stat.name, "base_stat": stat.base_stat / team.length}});
+        return stats
+    }
 
-    console.log(selectedPokemon);
+    // const teamTypes= () => {
+    //     let types = team.map(pokemon => {
+    //         return pokemon.types.map(type => type.name);
+    //     });
+
+    //     return types;
+    // }
+
+    // console.log(teamTypes());
 
     return (
         <main>
@@ -39,6 +67,8 @@ export default function Page() {
                 <button onClick={handleClick}>Ajouter</button>
                 {team.map((pokemon, index) => <li>{pokemon.name}</li>)}
             </ul>
+            <h2>Informations d'équipes</h2>
+            {averageStats().map(stat => <p>{stat.name}: {Math.round(stat.base_stat)}</p>)}
         </main>
     )
 }
