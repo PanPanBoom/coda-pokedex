@@ -1,20 +1,16 @@
 import { useData } from "vike-react/useData";
+import { PokemonMainInfos } from "../../components/PokemonMainInfos";
+import { PokemonStats } from "../../components/PokemonStats";
 
 export default function PokemonPage() {
     const pokemonData = useData();
 
+    console.log(pokemonData);
+
     return (
         <main>
-            <h1>{pokemonData.name}</h1>
-            <img src={pokemonData.sprites.normal.male} alt="" />
-            <img src={pokemonData.sprites.normal.female} alt="" />
-            <img src={pokemonData.sprites.shiny.male} alt="" />
-            <ul>
-                {pokemonData.types.map((type, index) => <li key={index}>{type.name}</li>)}
-            </ul>
-            <ul>
-                {pokemonData.stats.map((stat, index) => <li key={index}>{stat.name}: {stat.base_stat}</li>)}
-            </ul>
+            <PokemonMainInfos name={pokemonData.name} sprite={pokemonData.sprites.normal.male} types={pokemonData.types}/>
+            <PokemonStats stats={pokemonData.stats} />
         </main>
     );
 }
