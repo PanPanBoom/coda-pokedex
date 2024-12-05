@@ -43,19 +43,37 @@ export default function Page() {
                 pokemon.stats.forEach((stat, indexStat) => stats[indexStat].base_stat += stat.base_stat);
         });
     
-        stats = stats.map(stat => { return {"name": stat.name, "base_stat": stat.base_stat / team.length}});
+        stats = stats.map(stat => { return {"name": stat.name, "base_stat": Math.round(stat.base_stat / team.length)}});
         return stats
     }
 
-    // const teamTypes= () => {
-    //     let types = team.map(pokemon => {
-    //         return pokemon.types.map(type => type.name);
-    //     });
+    const teamTypes= () => {
+        let typesCounter = {};
+        team.forEach(pokemon => {
+            pokemon.types.forEach(type => {
+                if(Object.keys(typesCounter).includes(type.name))
+                    typesCounter[type.name]++;
+                else
+                    typesCounter[type.name] = 1;
+            });
+        });
 
-    //     return types;
-    // }
+        let types = [];
+        const typesCounterLength = Object.keys(typesCounter).length;
+        while(types.length < typesCounterLength)
+        {
+            const max = Math.max(...Object.values(typesCounter));
+            const keyMax = Object.keys(typesCounter).find(key => typesCounter[key] === max);
+            types.push(keyMax);
+            typesCounter = Object.fromEntries(
+                Object.entries(typesCounter).filter(([key]) => key !== keyMax)
+            );
+        }
 
-    // console.log(teamTypes());
+        return types;
+    }
+
+    console.log(teamTypes());
 
     return (
         <main>
@@ -68,7 +86,10 @@ export default function Page() {
                 {team.map((pokemon, index) => <li>{pokemon.name}</li>)}
             </ul>
             <h2>Informations d'équipes</h2>
-            {averageStats().map(stat => <p>{stat.name}: {Math.round(stat.base_stat)}</p>)}
+            <ul>
+                {averageStats().map((stat, index) => <li key={index}>{stat.name}: {stat.base_stat}</li>)}
+            </ul>
+            <p>Types: {teamTypes().map((type, index) => type + (index + 1 === teamTypes().length ? "" : ", "))}</p>
         </main>
     )
 }
