@@ -11,7 +11,7 @@ export default function LayoutDefault({ children }: { children: React.ReactNode 
     <div className={"flex max-w-5xl m-auto"}>
       <Sidebar>
         <Link href="/">Pokédex</Link>
-        {""}
+        <Link href="/team">Équipe</Link>
       </Sidebar>
       <Content>{children}</Content>
     </div>
