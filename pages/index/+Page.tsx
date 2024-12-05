@@ -23,7 +23,7 @@ export default function Page() {
 
   const filterPokemons = async (name: String, typeParam: String) => {
     let listPokemons = [];
-    listPokemons = pokemons.filter(pokemon => pokemon.name.toLowerCase().includes(name.toLowerCase()));
+    listPokemons = (name <= input ? pokemons : pokemonsDisplayed).filter(pokemon => pokemon.name.toLowerCase().includes(name.toLowerCase()));
     
     
     if(typeParam.length < 1)
