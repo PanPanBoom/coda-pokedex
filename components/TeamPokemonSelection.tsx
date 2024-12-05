@@ -6,7 +6,6 @@ import type { Data } from "../pages/team/+data";
 export const TeamPokemonSelection = () => {
     const pokemons = useData<Data>();
     const [selectedPokemon, setSelectedPokemon] = useState(pokemons[0].name);
-    const [teamTypes, setTeamTypes] = useState([]);
     const teamContext = useContext(TeamContext);
 
     const {team, setTeam} = teamContext;
