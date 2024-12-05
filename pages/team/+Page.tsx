@@ -67,7 +67,6 @@ export default function Page() {
 
         let typesCounterList = [];
         Object.keys(typesCounter).forEach(name => {typesCounterList.push({"name": name, "count": typesCounter[name]})});
-        console.log(typesCounterList);
 
         const types = typesCounterList.sort((a, b) => {
             if(a.count < b.count)

@@ -24,8 +24,6 @@ export default function Page() {
   const filterPokemons = async (name: String, typeParam: String) => {
     let listPokemons = [];
     listPokemons = (name <= input ? pokemons : pokemonsDisplayed).filter(pokemon => pokemon.name.toLowerCase().includes(name.toLowerCase()));
-
-    console.log(listPokemons);
     
     
     if(typeParam.length < 1)
@@ -46,6 +44,8 @@ export default function Page() {
 
     setPokemonsDisplayed(listPokemons);
   }
+
+  console.log(pokemons);
   
   return (
     <>
@@ -56,7 +56,14 @@ export default function Page() {
         {types.map(type => <option>{type.name}</option>)}
       </select>
       <ul>
-        {pokemonsDisplayed.map((pokemon, index) => <li key={index}><Link href={`/${pokemon.slug}`}>{pokemon.name}</Link></li>)}
+        {pokemonsDisplayed.map((pokemon, index) => (
+          <li key={index}>
+            <Link href={`/${pokemon.slug}`}>
+              <img src={pokemon.sprites.normal.male} alt={`${pokemon.name} sprite`} />
+              {pokemon.name}
+            </Link>
+          </li>
+          ))}
       </ul>
     </>
   );
