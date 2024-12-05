@@ -14,7 +14,6 @@ export default function Page() {
     let listPokemons = [];
     listPokemons = pokemons.filter(pokemon => pokemon.name.toLowerCase().includes(name.toLowerCase()));
     
-    
     if(typeParam.length < 1)
     {    
       setPokemonsDisplayed(listPokemons);

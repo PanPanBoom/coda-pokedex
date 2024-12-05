@@ -6,5 +6,7 @@ export const data = async () => {
     });
     const pokemons = await response.json();
 
+    console.log("fetching");
+
     return pokemons;
 };
