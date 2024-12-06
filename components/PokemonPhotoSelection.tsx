@@ -26,8 +26,6 @@ export const PokemonPhotoSelection = (props: PokemonPhotoSelectionProps) => {
     }
 
     const sprites = allSprites(props.sprites);
-    
-    console.log("rerender");
 
     return (
         <div>

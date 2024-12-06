@@ -1,5 +1,6 @@
 import { Link } from "./Link";
 import { Pokemon } from "./Pokemon"
+import { PokemonPokedexDisplay } from "./PokemonPokedexDisplay";
 
 type PokemonsListProps = {
     pokemons: []
@@ -11,7 +12,8 @@ export const PokemonsList = (props: PokemonsListProps) => {
             {props.pokemons.map((pokemon, index) => (
                 <li key={index}>
                     <Link href={`/${pokemon.slug}`}>
-                        <Pokemon img={pokemon.sprites.normal.male} name={pokemon.name} />
+                        {/* <Pokemon img={pokemon.sprites.normal.male} name={pokemon.name} /> */}
+                        <PokemonPokedexDisplay pokemon={pokemon} />
                     </Link>
                 </li>
             ))}
