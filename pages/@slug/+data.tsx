@@ -14,5 +14,5 @@ export const data = async (pageContext: PageContextServer) => {
         title: pokemon.current.name
     })
 
-    return pokemon.current;
+    return pokemon;
 };

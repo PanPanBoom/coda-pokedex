@@ -1,26 +1,33 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 type PokemonPhotoSelectionProps = {
     name: string;
     sprites: [];
 }
 
-const allSprites = (sprites: []) => {
-    let allSprites = [];
-    Object.keys(sprites).forEach(cat => {
-        Object.keys(sprites[cat]).forEach(gender => {
-            const sprite = sprites[cat][gender];
-            if(sprite !== null)
-                allSprites.push(sprite);
-        })
-    })
-
-    return allSprites;
-}
-
 export const PokemonPhotoSelection = (props: PokemonPhotoSelectionProps) => {
-    const sprites = allSprites(props.sprites);
     const [selectedSprite, setSelectedSprite] = useState(props.sprites.normal.male);
+
+    useEffect(() => {
+        setSelectedSprite(props.sprites.normal.male);
+    }, [props.sprites])
+
+    const allSprites = (sprites: []) => {
+        let allSprites = [];
+        Object.keys(sprites).forEach(cat => {
+            Object.keys(sprites[cat]).forEach(gender => {
+                const sprite = sprites[cat][gender];
+                if(sprite !== null)
+                    allSprites.push(sprite);
+            })
+        })
+    
+        return allSprites;
+    }
+
+    const sprites = allSprites(props.sprites);
+    
+    console.log("rerender");
 
     return (
         <div>
