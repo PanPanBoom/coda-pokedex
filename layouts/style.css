@@ -1,3 +1,9 @@
+@font-face {
+  font-family: "Pokemon";
+  src: local("pokemon"),
+    url("../fonts/pokemon.ttf") format("truetype");
+}
+
 /* Links */
 a {
   text-decoration: none;
@@ -13,7 +19,7 @@ a {
 /* Reset */
 body {
   margin: 0;
-  font-family: sans-serif;
+  font-family: "pokemon";
 }
 * {
   box-sizing: border-box;
