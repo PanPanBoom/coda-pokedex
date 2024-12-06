@@ -15,13 +15,11 @@ export default function Page() {
     // });
 
     return (
-        <TeamProvider>
-            <main>
-                <h1>Équipe</h1>
-                <TeamPokemonSelection />
-                <Team />
-                <TeamInformations />
-            </main>
-        </TeamProvider>
+        <main>
+            <h1>Équipe</h1>
+            <TeamPokemonSelection />
+            <Team />
+            <TeamInformations />
+        </main>
     )
 }

@@ -3,8 +3,8 @@ import "./style.css";
 import "./tailwind.css";
 
 import React from "react";
-import logoUrl from "../assets/logo.svg";
 import { Link } from "../components/Link.js";
+import { TeamProvider } from "../contextes/TeamContext";
 
 export default function LayoutDefault({ children }: { children: React.ReactNode }) {
   return (
@@ -13,7 +13,9 @@ export default function LayoutDefault({ children }: { children: React.ReactNode 
         <Link href="/">Pokédex</Link>
         <Link href="/team">Équipe</Link>
       </Sidebar>
-      <Content>{children}</Content>
+      <TeamProvider>
+        <Content>{children}</Content>
+      </TeamProvider>
     </div>
   );
 }
