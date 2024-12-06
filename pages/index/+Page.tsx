@@ -11,10 +11,8 @@ export default function Page() {
   const [pokemonsDisplayed, setPokemonsDisplayed] = useState(pokemons);
 
   const filterPokemons = async (name: String, typeParam: String) => {
-    const fetchPokemons = await fetch(`https://pokedex.coda.memento-dev.fr/pokemon?with=types&search=${name}`, {
-      headers: {Authorization: `Bearer ${import.meta.env.API_KEY}`}
-  });
-    let listPokemons = await fetchPokemons.json();
+    console.log(typeParam);
+    let listPokemons = pokemons.filter(pokemon => pokemon.name.toLowerCase().includes(name.toLowerCase()));
     
     if(typeParam.length < 1)
     {    

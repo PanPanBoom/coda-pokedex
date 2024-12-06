@@ -8,7 +8,7 @@ type PokemonsListProps = {
 
 export const PokemonsList = (props: PokemonsListProps) => {
     return (
-        <ul>
+        <ul className="mt-4">
             {props.pokemons.map((pokemon, index) => (
                 <li key={index}>
                     <Link href={`/${pokemon.slug}`}>
