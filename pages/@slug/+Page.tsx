@@ -9,7 +9,7 @@ export default function PokemonPage() {
 
     return (
         <main>
-            <PokemonMainInfos name={pokemonData.name} sprite={pokemonData.sprites.normal.male} types={pokemonData.types}/>
+            <PokemonMainInfos name={pokemonData.name} sprites={pokemonData.sprites} types={pokemonData.types}/>
             <PokemonStats stats={pokemonData.stats} />
         </main>
     );
