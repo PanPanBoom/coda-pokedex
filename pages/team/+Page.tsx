@@ -1,22 +1,18 @@
-import { useContext, useState } from "react";
 import { Team } from "../../components/Team";
 import { TeamPokemonSelection } from "../../components/TeamPokemonSelection";
 import { useConfig } from "vike-react/useConfig";
 import { TeamInformations } from "../../components/TeamInformations";
-import { TeamContext, TeamProvider } from "../../contextes/TeamContext";
+import { Title } from "../../components/Title";
 
 export default function Page() {
-    const teamContext = useContext(TeamContext);
-
-    const {team, setTeam} = teamContext;
-    // const config = useConfig();
-    // config({
-    //     title: "Équipe"
-    // });
+    const config = useConfig();
+    config({
+        title: "Équipe"
+    });
 
     return (
         <main>
-            <h1>Équipe</h1>
+            <Title>Équipe</Title>
             <TeamPokemonSelection />
             <Team />
             <TeamInformations />

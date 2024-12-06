@@ -4,6 +4,7 @@ import { PokemonStats } from "../../components/PokemonStats";
 import { PokemonSwitch } from "../../components/PokemonSwitch";
 import { useContext } from "react";
 import { TeamContext } from "../../contextes/TeamContext";
+import { Button } from "../../components/Button";
 
 export default function PokemonPage() {
     const pokemonData = useData();
@@ -26,10 +27,12 @@ export default function PokemonPage() {
     }
 
     return (
-        <main>
-            <PokemonMainInfos name={pokemon.name} sprites={pokemon.sprites} types={pokemon.types}/>
-            <button disabled={team.length === 6} onClick={handleClick}>Ajouter à l'équipe</button>
-            <PokemonStats stats={pokemon.stats} />
+        <main className="h-full">
+            <section className="inline-flex">
+                <PokemonMainInfos name={pokemon.name} sprites={pokemon.sprites} types={pokemon.types}/>
+                <PokemonStats stats={pokemon.stats} />
+            </section>
+            <Button disabled={team.length === 6} onClick={handleClick}>Ajouter à l'équipe</Button>
             <PokemonSwitch previousPokemon={pokemonData.previous} nextPokemon={pokemonData.next} />
         </main>
     );

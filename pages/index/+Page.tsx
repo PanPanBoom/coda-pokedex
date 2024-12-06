@@ -1,10 +1,9 @@
 import React, { useState } from "react";
 import { useData } from "vike-react/useData";
-import { data, type Data } from "./+data";
-import { Link } from "../../components/Link";
-import { Pokemon } from "../../components/Pokemon";
 import { PokemonsList } from "../../components/PokemonsList";
 import { PokedexSearch } from "../../components/PokedexSearch";
+import { Title } from "../../components/Title";
+import type { Data } from "./+data";
 
 export default function Page() {
   const [pokemons, types] = useData<Data>();
@@ -35,7 +34,7 @@ export default function Page() {
   
   return (
     <>
-      <h1 className={"font-bold text-3xl pb-4"}>Pokédex</h1>
+      <Title>Pokédex</Title>
       <PokedexSearch types={types} filterPokemons={filterPokemons} />
       <PokemonsList pokemons={pokemonsDisplayed}/>
     </>

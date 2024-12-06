@@ -1,4 +1,6 @@
 import { PokemonPhotoSelection } from "./PokemonPhotoSelection"
+import { Title } from "./Title"
+import { Type } from "./Type"
 
 type PokemonMainInfosProps = {
     name: string,
@@ -9,10 +11,10 @@ type PokemonMainInfosProps = {
 export const PokemonMainInfos = (props: PokemonMainInfosProps) => {
     return (
         <article>
-            <h1>{props.name}</h1>
+            <Title>{props.name}</Title>
             <PokemonPhotoSelection sprites={props.sprites} name={props.name}/>
-            <ul>
-                {props.types.map((type, index) => <li key={index}>{type.name}</li>)}
+            <ul className="inline-flex gap-1">
+                {props.types.map((type, index) => <li key={index}><Type name={type.name}/></li>)}
             </ul>
         </article>
     )
