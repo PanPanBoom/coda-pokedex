@@ -1,5 +1,6 @@
 type TypeProps = {
-    name: string
+    name: string;
+    className: string;
 }
 
 export const Type = (props: TypeProps) => {
@@ -84,6 +85,6 @@ export const Type = (props: TypeProps) => {
     }
 
     return (
-        <span className={`${bg_color} px-3 rounded text-white text-shadow`}>{props.name.toUpperCase()}</span>
+        <span className={props.className + ` ${bg_color} px-3 rounded text-white text-shadow`}>{props.name.toUpperCase()}</span>
     );
 };

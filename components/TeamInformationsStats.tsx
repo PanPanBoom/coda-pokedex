@@ -1,5 +1,6 @@
 import { useState, useContext, useEffect } from "react";
 import { TeamContext } from "../contextes/TeamContext";
+import { PokemonStats } from "./PokemonStats";
 
 export const TeamInformationsStats = () => {
     const [teamStats, setTeamStats] = useState([]);
@@ -24,9 +25,13 @@ export const TeamInformationsStats = () => {
         setTeamStats(stats);
     }
 
-    return (
-        <ul>
-            {teamStats.map((stat, index) => <li key={index}>{stat.name}: {stat.base_stat}</li>)}
-        </ul>
-    )
+    if(team.length > 0)
+        return (
+            <ul>
+                {/* {teamStats.map((stat, index) => <li key={index}>{stat.name}: {stat.base_stat}</li>)} */}
+                <PokemonStats className="bg-yellow-200" stats={teamStats} types={[]} />
+            </ul>
+        );
+
+    return null;
 }

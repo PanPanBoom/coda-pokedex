@@ -1,5 +1,6 @@
 import { useState, useEffect, useContext } from "react";
 import { TeamContext } from "../contextes/TeamContext";
+import { Type } from "./Type";
 
 export const TeamInformationsTypes = () => {
     const [teamTypes, setTeamTypes] = useState([]);
@@ -47,6 +48,6 @@ export const TeamInformationsTypes = () => {
     }
 
     return (
-        <p>Types: {teamTypes.map((type, index) => `${type.name} (${type.count})${index + 1 === teamTypes.length ? "" : ", "}`)}</p>
+        <div className="p-2">{teamTypes.map((type) => <Type className="mr-1" name={type.name}/>)}</div>
     )
 }

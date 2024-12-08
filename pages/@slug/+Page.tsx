@@ -24,6 +24,7 @@ export default function PokemonPage() {
             return;
         
         setTeam([...team, pokemon]);
+        console.log("success");
     }
 
     return (

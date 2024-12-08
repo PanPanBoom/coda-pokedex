@@ -2,6 +2,7 @@ import { useState, useContext } from "react";
 import { TeamContext } from "../contextes/TeamContext";
 import { useData } from "vike-react/useData";
 import type { Data } from "../pages/team/+data";
+import { Button } from "./Button";
 
 export const TeamPokemonSelection = () => {
     const pokemons = useData<Data>();
@@ -32,10 +33,10 @@ export const TeamPokemonSelection = () => {
     
     return (
         <section>
-            <select value={selectedPokemon} onChange={e => setSelectedPokemon(e.target.value)}>
+            <select className="mr-3" value={selectedPokemon} onChange={e => setSelectedPokemon(e.target.value)}>
                 {pokemons.map(pokemon => <option value={pokemon.name}>{pokemon.name}</option>)}
             </select>
-            <button onClick={handleClick}>Ajouter</button>
+            <Button onClick={handleClick}>Ajouter</Button>
         </section>
     )
 };

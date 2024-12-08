@@ -5,10 +5,10 @@ import { TeamInformationsStats } from "./TeamInformationsStats";
 
 export const TeamInformations = () => {
     return (
-        <article>
-            <h2>Informations d'équipes</h2>
-            <TeamInformationsStats />
+        <article className="mt-3">
+            <h2 className="text-2xl">Informations d'équipes</h2>
             <TeamInformationsTypes />
+            <TeamInformationsStats />
         </article>
     )
 };

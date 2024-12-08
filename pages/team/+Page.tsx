@@ -3,6 +3,7 @@ import { TeamPokemonSelection } from "../../components/TeamPokemonSelection";
 import { useConfig } from "vike-react/useConfig";
 import { TeamInformations } from "../../components/TeamInformations";
 import { Title } from "../../components/Title";
+import { PokedexSearch } from "../../components/PokedexSearch";
 
 export default function Page() {
     const config = useConfig();
