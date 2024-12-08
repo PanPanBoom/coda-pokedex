@@ -84,6 +84,6 @@ export const Type = (props: TypeProps) => {
     }
 
     return (
-        <span className={`${bg_color} px-3 rounded text-white`} style={{"textShadow": "1px 1px 2px black"}}>{props.name.toUpperCase()}</span>
+        <span className={`${bg_color} px-3 rounded text-white text-shadow`}>{props.name.toUpperCase()}</span>
     );
 };

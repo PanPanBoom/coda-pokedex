@@ -27,10 +27,10 @@ export default function PokemonPage() {
     }
 
     return (
-        <main className="h-full">
-            <section className="inline-flex">
-                <PokemonMainInfos name={pokemon.name} sprites={pokemon.sprites} types={pokemon.types}/>
-                <PokemonStats stats={pokemon.stats} />
+        <main className="h-full border-4 border-slate-500 bg-yellow-200">
+            <section className="flex">
+                <PokemonMainInfos name={pokemon.name} sprites={pokemon.sprites}/>
+                <PokemonStats stats={pokemon.stats} types={pokemon.types}/>
             </section>
             <Button disabled={team.length === 6} onClick={handleClick}>Ajouter à l'équipe</Button>
             <PokemonSwitch previousPokemon={pokemonData.previous} nextPokemon={pokemonData.next} />

@@ -30,11 +30,11 @@ export const PokemonPhotoSelection = (props: PokemonPhotoSelectionProps) => {
     return (
         <div className="flex flex-col">
             {/* Current sprite displayed */}
-            <img src={selectedSprite} alt={`${props.name} sprite`} className="w-96" />
+            <img src={selectedSprite} alt={`${props.name} sprite`} className="h-96 bg-gray-100 px-20 border-2 border-purple-400" />
 
             {/* All sprites */}
             <div className="inline-flex place-self-center">
-                {sprites.map(sprite => <img src={sprite} onClick={e => setSelectedSprite(sprite)} className={(sprite === selectedSprite ? "filter grayscale border rounded-lg" : "cursor-pointer")}></img>)}
+                {sprites.map(sprite => <img src={sprite} onClick={e => setSelectedSprite(sprite)} className={(sprite === selectedSprite ? "filter grayscale border rounded-lg" : "cursor-pointer") + " mt-2"}></img>)}
             </div>
         </div>
     )
